@@ -1,0 +1,82 @@
+<footer class="footer">
+  <div class="container">
+    <a class="logo">
+      <img src="/assets/images/logo-green.png" alt="Логотип">
+    </a>
+    <div class="footer-block footer-menu">
+      <div class="footer-head">МЕНЮ</div>
+      <nav class="footer-items">
+        <ul>
+          <li>
+            <a routerLink="/">Главная</a>
+          </li>
+          <li>
+            <a routerLink="/catalog">Каталог</a>
+          </li>
+          <li>
+            <a routerLink="/" fragment="delivery">Доставка и оплата</a>
+          </li>
+          <li>
+            <a>Новости</a>
+          </li>
+          <li>
+            <a routerLink="/" fragment="reviews">Отзывы</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-block footer-categories">
+      <div class="footer-head">КАТЕГОРИИ</div>
+      <nav class="footer-items">
+        <ul>
+          <li *ngFor="let category of categories">
+            <a routerLink="/catalog" [queryParams]="{types: category?.typesUrl}">{{category.name}}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-block footer-info">
+      <div class="footer-head">МЫ В СОЦИАЛЬНЫХ СЕТЯХ</div>
+      <div class="footer-social">
+        <a>
+          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.06152 0C1.37988 0 0 1.37988 0 3.06152V13.4385C0 15.1201 1.37988 16.5 3.06152 16.5H13.4385C15.1201 16.5 16.5 15.1201 16.5 13.4385V3.06152C16.5 1.37988 15.1201 0 13.4385 0H3.06152ZM3.06152 1.5H13.4385C14.3086 1.5 15 2.19141 15 3.06152V13.4385C15 14.3086 14.3086 15 13.4385 15H3.06152C2.19141 15 1.5 14.3086 1.5 13.4385V3.06152C1.5 2.19141 2.19141 1.5 3.06152 1.5ZM8.03906 5.42285C7.48828 5.41699 7.01953 5.42285 6.75586 5.55176C6.58008 5.63672 6.44531 5.83008 6.52734 5.83887C6.62988 5.85352 6.86133 5.90332 6.98437 6.07031C7.14258 6.28418 7.13672 6.76758 7.13672 6.76758C7.13672 6.76758 7.22461 8.09766 6.92285 8.26465C6.71484 8.37891 6.43066 8.14746 5.81543 7.08984C5.50195 6.54492 5.26465 5.94434 5.26465 5.94434C5.26465 5.94434 5.2207 5.83301 5.13867 5.77441C5.03906 5.70117 4.90137 5.67773 4.90137 5.67773L3.43359 5.68652C3.43359 5.68652 3.21387 5.69531 3.13477 5.78906C3.06152 5.87695 3.12891 6.0498 3.12891 6.0498C3.12891 6.0498 4.27734 8.73633 5.57812 10.0898C6.77051 11.332 8.12402 11.25 8.12402 11.25H8.73926C8.73926 11.25 8.92383 11.2295 9.01758 11.1299C9.10547 11.0361 9.10254 10.8604 9.10254 10.8604C9.10254 10.8604 9.09082 10.0371 9.47168 9.91406C9.84961 9.79687 10.3301 10.7109 10.8428 11.0625C11.2324 11.3291 11.5283 11.2705 11.5283 11.2705L12.8994 11.25C12.8994 11.25 13.6143 11.2061 13.2744 10.6406C13.248 10.5967 13.0781 10.2246 12.2578 9.46289C11.3965 8.66601 11.5107 8.79492 12.5479 7.41504C13.1777 6.57422 13.4297 6.06152 13.3506 5.83887C13.2744 5.63086 12.8115 5.68652 12.8115 5.68652L11.2676 5.69531C11.2676 5.69531 11.1533 5.68066 11.0684 5.73047C10.9863 5.78027 10.9336 5.89746 10.9336 5.89746C10.9336 5.89746 10.6875 6.54785 10.3623 7.10156C9.67676 8.26758 9.39844 8.33203 9.28711 8.25879C9.02637 8.08887 9.09082 7.5791 9.09082 7.21875C9.09082 6.08496 9.26367 5.61621 8.75683 5.49316C8.58984 5.45215 8.4668 5.42578 8.03906 5.42285Z" fill="#2C2C2C"/>
+          </svg>
+        </a>
+        <a>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 0C4.03832 0 0 4.03832 0 9C0 13.9617 4.03832 18 9 18C13.9617 18 18 13.9617 18 9C18 4.03832 13.9617 0 9 0ZM9 1.5C13.151 1.5 16.5 4.84898 16.5 9C16.5 12.7705 13.7338 15.871 10.1162 16.4092V11.187H12.252L12.5874 9.01758H10.1162V7.83252C10.1162 6.93177 10.4121 6.13184 11.2544 6.13184H12.6079V4.23926C12.3702 4.20701 11.867 4.13672 10.916 4.13672C8.93002 4.13672 7.7666 5.18521 7.7666 7.57471V9.01758H5.72461V11.187H7.7666V16.3901C4.20664 15.803 1.5 12.7298 1.5 9C1.5 4.84898 4.84898 1.5 9 1.5Z" fill="#2C2C2C"/>
+          </svg>
+        </a>
+        <a>
+          <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.85156 0C2.18848 0 0 2.18555 0 4.85156V11.6484C0 14.3115 2.18555 16.5 4.85156 16.5H11.6484C14.3115 16.5 16.5 14.3145 16.5 11.6484V4.85156C16.5 2.18848 14.3145 0 11.6484 0H4.85156ZM4.85156 1.5H11.6484C13.5029 1.5 15 2.99707 15 4.85156V11.6484C15 13.5029 13.5029 15 11.6484 15H4.85156C2.99707 15 1.5 13.5029 1.5 11.6484V4.85156C1.5 2.99707 2.99707 1.5 4.85156 1.5ZM12.6797 3.14062C12.3018 3.14062 12 3.44238 12 3.82031C12 4.19824 12.3018 4.5 12.6797 4.5C13.0576 4.5 13.3594 4.19824 13.3594 3.82031C13.3594 3.44238 13.0576 3.14062 12.6797 3.14062ZM8.25 3.75C5.77441 3.75 3.75 5.77441 3.75 8.25C3.75 10.7256 5.77441 12.75 8.25 12.75C10.7256 12.75 12.75 10.7256 12.75 8.25C12.75 5.77441 10.7256 3.75 8.25 3.75ZM8.25 5.25C9.91699 5.25 11.25 6.58301 11.25 8.25C11.25 9.91699 9.91699 11.25 8.25 11.25C6.58301 11.25 5.25 9.91699 5.25 8.25C5.25 6.58301 6.58301 5.25 8.25 5.25Z" fill="#2C2C2C"/>
+          </svg>
+        </a>
+      </div>
+      <div class="footer-payment">
+        <div class="payment-item" style="background-image: url('/assets/images/payment/1.png')">&nbsp;</div>
+        <div class="payment-item" style="background-image: url('/assets/images/payment/2.png')">&nbsp;</div>
+        <div class="payment-item" style="background-image: url('/assets/images/payment/3.png')">&nbsp;</div>
+        <div class="payment-item" style="background-image: url('/assets/images/payment/4.png')">&nbsp;</div>
+        <div class="payment-item" style="background-image: url('/assets/images/payment/5.png')">&nbsp;</div>
+        <div class="payment-item" style="background-image: url('/assets/images/payment/6.png')">&nbsp;</div>
+      </div>
+    </div>
+    <div class="footer-block footer-contacts">
+      <div class="footer-head">КОНТАКТЫ</div>
+      <div class="footer-contact">
+        <div class="footer-contact-head">Адрес</div>
+        <div class="footer-contact-info">г. Минск,  ул. Калиновского 61, подъезд 1, офис 6</div>
+      </div>
+      <div class="footer-contact">
+        <div class="footer-contact-head">Телефон</div>
+        <div class="footer-contact-info">+ 375 (29) 922-29-99</div>
+      </div>
+      <div class="footer-contact">
+        <div class="footer-contact-head">E-mail</div>
+        <div class="footer-contact-info">homedecor@gmail.com</div>
+      </div>
+    </div>
+  </div>
+</footer>

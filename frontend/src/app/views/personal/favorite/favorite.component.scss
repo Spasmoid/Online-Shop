@@ -1,0 +1,102 @@
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/mixins";
+
+.favorite {
+  padding: 50px 0 110px 0;
+
+  .container {
+
+    .favorite-title {
+      @include head-lora-36;
+      color: $green-text-color;
+      margin-bottom: 35px;
+    }
+
+    .favorite-empty {
+      margin: 20px 0 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .favorite-empty-image {
+        width: 400px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .favorite-empty-text {
+        font-size: 32px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        color: #4e4e4e;
+      }
+
+      .favorite-empty-link {
+        margin-top: 20px;
+        font-size: 20px;
+        font-family: Montserrat, sans-serif;
+        font-weight: 500;
+        color: #4e4e4e;
+
+        a {
+          color: #6CAC72;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .favorite-products {
+      .favorite-product {
+        padding-top: 15px;
+        margin-top: 15px;
+        border-top: 1px solid #E7F1E8;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:first-child {
+          padding-top: 0;
+          margin-top: 0;
+          border-top: 0;
+        }
+
+        .favorite-product-image {
+          background-position: center;
+          background-size: cover;
+          width: 100px;
+          height: 100px;
+          border-radius: 5px;
+        }
+
+        .favorite-product-name {
+          width: 567px;
+          margin-right: 20px;
+          margin-left: 24px;
+          color: $grey-text-color;
+          font-size: 20px;
+        }
+
+        .favorite-product-price {
+          width: 100px;
+          margin-right: 193px;
+          color: $grey-text-color;
+          font-family: Montserrat, sans-serif;
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .favorite-product-action button {
+          width: 160px;
+        }
+
+        .favorite-product-remove {
+          margin-left: 61px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
