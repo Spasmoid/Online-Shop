@@ -46,10 +46,13 @@ export class DetailComponent implements OnInit {
   recommendedProducts: ProductType[] = [];
   product!: ProductType;
   count: number = 1;
+  isLogged: boolean = false;
 
   serverStaticPath = environment.serverStaticPath;
 
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private cartService: CartService, private favoriteService: FavoriteService, private authService: AuthService, private _snackbar: MatSnackBar) { }
+  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private cartService: CartService, private favoriteService: FavoriteService, private authService: AuthService, private _snackbar: MatSnackBar) {
+    this.isLogged = this.authService.getIsLoggedIn();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {

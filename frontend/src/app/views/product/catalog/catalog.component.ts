@@ -64,6 +64,8 @@ export class CatalogComponent implements OnInit {
               this.processCatalog();
             }
           });
+      } else {
+        this.processCatalog();
       }
     });
   }

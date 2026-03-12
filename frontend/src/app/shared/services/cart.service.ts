@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ActiveParamsType} from "../../../types/active-params.type";
 import {Observable, Subject, tap} from "rxjs";
-import {ProductType} from "../../../types/product.type";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {CartType} from "../../../types/cart.type";

@@ -42,6 +42,13 @@
       <div class="catalog-products">
         <product-card [countInCart]="product.countInCart" *ngFor="let product of products" [product]="product"></product-card>
       </div>
+
+      <div class="catalog-empty" *ngIf="!products || products.length === 0">
+        <div class="catalog-empty-image">
+          <img src="/assets/images/page/empty-page.png" alt="Растение">
+        </div>
+        <div class="catalog-empty-text">Товары по вашему запросу не найдены...</div>
+      </div>
     </div>
 
     <div class="pagination" *ngIf="pages.length > 1">

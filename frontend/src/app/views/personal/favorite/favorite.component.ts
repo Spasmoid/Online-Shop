@@ -3,6 +3,8 @@ import {FavoriteService} from "../../../shared/services/favorite.service";
 import {FavoriteType} from "../../../../types/favorite.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {environment} from "../../../../environments/environment";
+import {CartType} from "../../../../types/cart.type";
+import {CartService} from "../../../shared/services/cart.service";
 
 @Component({
   selector: 'app-favorite',
@@ -12,8 +14,9 @@ import {environment} from "../../../../environments/environment";
 export class FavoriteComponent implements OnInit {
 
   products: FavoriteType[] = [];
+  cart: CartType | null = null;
   serverStaticPath = environment.serverStaticPath;
-  constructor(private favoriteService: FavoriteService) { }
+  constructor(private favoriteService: FavoriteService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.favoriteService.getFavorites().subscribe((data: FavoriteType[] | DefaultResponseType) => {
@@ -23,6 +26,25 @@ export class FavoriteComponent implements OnInit {
       }
 
       this.products = data as FavoriteType[];
+
+      this.cartService.getCart().subscribe((cartData: CartType | DefaultResponseType) => {
+        if ((data as DefaultResponseType).error !== undefined) {
+          const error = (data as DefaultResponseType).message;
+          throw new Error(error);
+        }
+
+        this.cart = (cartData as CartType);
+
+        if (this.cart) {
+          const cart = this.cart;
+          this.products.forEach((favoriteProduct: FavoriteType) => {
+            const productInCart = cart.items.find(item => favoriteProduct.id === item.product.id);
+            if (productInCart) {
+              favoriteProduct.countInCart = productInCart.quantity;
+            }
+          });
+        }
+      });
     });
   }
 
@@ -36,4 +58,36 @@ export class FavoriteComponent implements OnInit {
     });
   }
 
+  updateCount(product: FavoriteType, count: number) {
+    this.cartService.updateCart(product.id, count).subscribe((data: CartType | DefaultResponseType) => {
+      if ((data as DefaultResponseType).error !== undefined) {
+        throw new Error((data as DefaultResponseType).message);
+      }
+
+      const productInCart = (data as CartType).items.find(item => item.product.id === product.id);
+      if (productInCart) {
+        product.countInCart = productInCart.quantity;
+      }
+    });
+  }
+
+  addToCart(product: FavoriteType) {
+    this.cartService.updateCart(product.id, 1).subscribe((data: CartType | DefaultResponseType) => {
+      if ((data as DefaultResponseType).error !== undefined) {
+        throw new Error((data as DefaultResponseType).message);
+      }
+
+      product.countInCart = 1;
+    });
+  }
+
+  removeFromCart(product: FavoriteType) {
+    this.cartService.updateCart(product.id, 0).subscribe((data: CartType | DefaultResponseType) => {
+      if ((data as DefaultResponseType).error !== undefined) {
+        throw new Error((data as DefaultResponseType).message);
+      }
+
+      product.countInCart = 0;
+    });
+  }
 }

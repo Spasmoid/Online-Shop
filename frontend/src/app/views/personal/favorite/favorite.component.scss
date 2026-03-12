@@ -88,8 +88,15 @@
           font-weight: 600;
         }
 
-        .favorite-product-action button {
-          width: 160px;
+        .favorite-product-selector {
+          min-width: 97px;
+        }
+
+        .favorite-product-action {
+          button {
+            width: 160px;
+            margin-left: 20px;
+          }
         }
 
         .favorite-product-remove {
