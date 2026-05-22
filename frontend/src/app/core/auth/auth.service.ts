@@ -58,7 +58,7 @@ export class AuthService {
     return {
       accessToken: localStorage.getItem(this.accessTokenKey),
       refreshToken: localStorage.getItem(this.refreshTokenKey)
-    }
+    };
   }
 
   public get userId(): string | null {

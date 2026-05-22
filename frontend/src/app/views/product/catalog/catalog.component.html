@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class="catalog-sorting" [class.open]="sortingOpen" (click)="toggleSorting()">
+      <div class="catalog-sorting" [class.open]="sortingOpen" (click)="toggleSorting($event)">
         <div class="catalog-sorting-head">
           <span>Сортировать</span>
           <svg *ngIf="sortingOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">

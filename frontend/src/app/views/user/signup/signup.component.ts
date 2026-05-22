@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {LoginResponseType} from "../../../../types/login-response.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
+import {CartService} from "../../../shared/services/cart.service";
 
 @Component({
   selector: 'app-signup',
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
     agree: [false, [Validators.requiredTrue]],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private _snackbar: MatSnackBar, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private _snackbar: MatSnackBar, private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
   }
@@ -49,6 +50,7 @@ export class SignupComponent implements OnInit {
             this.authService.setTokens(loginResponse.accessToken, loginResponse.refreshToken);
             this.authService.userId = loginResponse.userId;
             this._snackbar.open('Регистрация прошла успешно');
+            this.cartService.getCartCount().subscribe();
             this.router.navigate(['/']);
           },
           error: (errorResponse: HttpErrorResponse) => {

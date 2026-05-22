@@ -54,7 +54,7 @@ export class InfoComponent implements OnInit {
         house: userInfo.house ? userInfo.house : '',
         entrance: userInfo.entrance ? userInfo.entrance : '',
         apartment: userInfo.apartment ? userInfo.apartment : '',
-      }
+      };
 
       this.userInfoForm.setValue(paramsToUpdate);
       if (userInfo.deliveryType) {
@@ -65,7 +65,7 @@ export class InfoComponent implements OnInit {
 
   changeDeliveryType(deliveryType: DeliveryType) {
     if (!(this.deliveryType === deliveryType)) {
-      this.userInfoForm.markAsDirty()
+      this.userInfoForm.markAsDirty();
     }
     this.deliveryType = deliveryType;
   }
@@ -77,7 +77,7 @@ export class InfoComponent implements OnInit {
         email: this.userInfoForm.value.email ? this.userInfoForm.value.email : '',
         deliveryType: this.deliveryType,
         paymentType: this.userInfoForm.value.paymentType ? this.userInfoForm.value.paymentType : PaymentType.cashToCourier,
-      }
+      };
 
       if (this.userInfoForm.value.firstName) {
         paramObject.firstName = this.userInfoForm.value.firstName;

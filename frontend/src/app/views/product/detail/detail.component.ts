@@ -42,7 +42,7 @@ export class DetailComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
   recommendedProducts: ProductType[] = [];
   product!: ProductType;
   count: number = 1;

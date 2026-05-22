@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject, tap} from "rxjs";
+import {BehaviorSubject, Observable, Subject, tap} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {CartType} from "../../../types/cart.type";
@@ -11,7 +11,7 @@ import {DefaultResponseType} from "../../../types/default-response.type";
 export class CartService {
 
   private count: number = 0;
-  count$: Subject<number> = new Subject<number>();
+  count$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) { }
 
@@ -32,7 +32,7 @@ export class CartService {
             this.setCount((data as {count: number}).count);
           }
         })
-      )
+      );
   }
 
   updateCart(productId: string, quantity: number): Observable<CartType | DefaultResponseType> {

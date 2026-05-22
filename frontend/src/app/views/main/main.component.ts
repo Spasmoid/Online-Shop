@@ -36,7 +36,7 @@ export class MainComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
   customOptionsReviews: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
 
   reviews = [
     {
@@ -96,7 +96,7 @@ export class MainComponent implements OnInit {
       image: 'review7.jpg',
       text: 'Хочу поблагодарить консультанта Ирину за помощь в выборе цветка для моей жены. Я ещё никогда не видел такого трепетного отношения к весьма непростому клиенту, которому сложно угодить! Сервис – огонь!'
     },
-  ]
+  ];
 
   constructor(private productService: ProductService) { }
 

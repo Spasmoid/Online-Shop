@@ -6,6 +6,7 @@ import {DefaultResponseType} from "../../../../types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {CartService} from "../../../shared/services/cart.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     rememberMe: [false],
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private _snackbar: MatSnackBar, private router: Router) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private _snackbar: MatSnackBar, private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
   }
@@ -48,6 +49,7 @@ export class LoginComponent implements OnInit {
             this.authService.setTokens(loginResponse.accessToken, loginResponse.refreshToken);
             this.authService.userId = loginResponse.userId;
             this._snackbar.open('Авторизация прошла успешно');
+            this.cartService.getCartCount().subscribe();
             this.router.navigate(['/']);
           },
           error: (errorResponse: HttpErrorResponse) => {

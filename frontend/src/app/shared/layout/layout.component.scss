@@ -1,0 +1,15 @@
+:host {
+  min-height: 100vh;
+  display: flex;
+}
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main {
+  flex: 1;
+}

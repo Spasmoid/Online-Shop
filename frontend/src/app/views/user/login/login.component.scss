@@ -1,13 +1,20 @@
 @import "../../../../assets/styles/auth-form";
 
-.login .container {
-  display: flex;
+.login {
+  height: 100%;
 
-  .page-image {
-    margin-left: 49px;
+  .container {
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
 
-    img {
-      vertical-align: bottom;
+    .page-image {
+      margin-left: 49px;
+
+      img {
+        vertical-align: bottom;
+        display: block;
+      }
     }
   }
 }

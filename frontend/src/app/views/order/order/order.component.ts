@@ -47,7 +47,7 @@ export class OrderComponent implements OnInit {
   @ViewChild('popup') popup!: TemplateRef<ElementRef>;
   dialogRef: MatDialogRef<any> | null = null;
 
-  constructor(private cartService: CartService, private router: Router, private _snackbar : MatSnackBar, private fb: FormBuilder, private dialog: MatDialog, private orderService: OrderService, private userService: UserService, private authService: AuthService) { this.updateDeliveryTypeValidation() }
+  constructor(private cartService: CartService, private router: Router, private _snackbar : MatSnackBar, private fb: FormBuilder, private dialog: MatDialog, private orderService: OrderService, private userService: UserService, private authService: AuthService) { this.updateDeliveryTypeValidation(); }
 
   ngOnInit(): void {
     this.cartService.getCart().subscribe((data: CartType | DefaultResponseType) => {
@@ -59,7 +59,7 @@ export class OrderComponent implements OnInit {
       if (!this.cart || !(this.cart && this.cart.items.length > 0)) {
         this._snackbar.open('В корзине нет товаров');
         this.router.navigate(['/']);
-        return
+        return;
       }
       this.calculateTotal();
     });
@@ -84,7 +84,7 @@ export class OrderComponent implements OnInit {
           entrance: userInfo.entrance ? userInfo.entrance : '',
           apartment: userInfo.apartment ? userInfo.apartment : '',
           comment: ''
-        }
+        };
 
         this.orderForm.setValue(paramsToUpdate);
         if (userInfo.deliveryType) {
@@ -136,7 +136,7 @@ export class OrderComponent implements OnInit {
         phone: this.orderForm.value.phone,
         paymentType: this.orderForm.value.paymentType,
         email: this.orderForm.value.email,
-      }
+      };
 
       if (this.deliveryType === DeliveryType.delivery) {
         if (this.orderForm.value.street) {

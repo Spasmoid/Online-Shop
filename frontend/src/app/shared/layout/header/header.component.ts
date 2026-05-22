@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit {
     this.authService.removeTokens();
     this.authService.userId = null;
     this._snackbar.open('Выход из системы прошел успешно');
+    this.cartService.getCartCount().subscribe();
     this.router.navigate(['/']);
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {CategoryService} from "../../../shared/services/category.service";
@@ -37,7 +37,14 @@ export class CatalogComponent implements OnInit {
   cart: CartType | null = null;
   favoriteProducts: FavoriteType[] | null = null;
 
-  constructor(private productService: ProductService, private categoryService: CategoryService, private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private favoriteService: FavoriteService, private authService: AuthService) {
+  constructor(private productService: ProductService, private categoryService: CategoryService, private activatedRoute: ActivatedRoute, private router: Router, private cartService: CartService, private favoriteService: FavoriteService, private authService: AuthService, private elementRef: ElementRef) {
+  }
+
+  @HostListener('document:click', ['$event'])
+  click(event: MouseEvent): void {
+    if (!this.elementRef.nativeElement.querySelector('.catalog-sorting')?.contains(event.target)) {
+      this.sortingOpen = false;
+    }
   }
 
   ngOnInit(): void {
@@ -81,6 +88,10 @@ export class CatalogComponent implements OnInit {
         .subscribe(params => {
           this.activeParams = ActiveParamsUtil.processParams(params);
 
+          if (!this.activeParams.page) {
+            this.activeParams.page = 1;
+          }
+
           this.appliedFilters = [];
           this.activeParams.types.forEach(url => {
             for (let i = 0; i < this.categoriesWithTypes.length; i++) {
@@ -122,13 +133,13 @@ export class CatalogComponent implements OnInit {
           this.productService.getProducts(this.activeParams).subscribe(data => {
             this.pages = [];
             for (let i = 1; i <= data.pages; i++) {
-              this.pages.push(i)
+              this.pages.push(i);
             }
 
             if (this.cart && this.cart.items.length > 0) {
               this.products = data.items.map(product => {
                 if (this.cart) {
-                  const productInCart = this.cart.items.find(item => item.product.id === product.id)
+                  const productInCart = this.cart.items.find(item => item.product.id === product.id);
 
                   if (productInCart) {
                     product.countInCart = productInCart.quantity;
@@ -166,7 +177,8 @@ export class CatalogComponent implements OnInit {
     });
   }
 
-  toggleSorting() {
+  toggleSorting(event: Event) {
+    event.stopPropagation();
     this.sortingOpen = !this.sortingOpen;
   }
 

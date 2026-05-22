@@ -40,7 +40,7 @@ export class CartComponent implements OnInit {
       }
     },
     nav: false
-  }
+  };
   cart: CartType | null = null;
   serverStaticPath = environment.serverStaticPath;
 
